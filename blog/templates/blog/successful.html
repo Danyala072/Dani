@@ -1,0 +1,19 @@
+{% extends 'blog\base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="alert alert-danger" role="alert" style="margin-top: 7.8rem;">
+    You Data has been successfully Transfered to our Server. <br> We will reply you soon.
+  </div>
+  <div class="d-flex justify-content-center">
+      <div class="spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span><br>
+        </div>
+    
+    </div>
+    <div class="d-flex justify-content-center my-5">
+        <a href="/" class="btn btn-danger"><button class="btn btn-danger">Go Back to Home Page</button></a>
+    </div>
+
+{% endblock %}

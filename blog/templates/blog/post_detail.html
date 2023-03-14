@@ -1,0 +1,62 @@
+{% extends 'blog\base.html' %}
+
+{% block content %}
+{% load static %}
+<div style="margin-top: 120px;" class="container text-center" >
+    <h2 class="h1"> {{ post.title }} </h2>
+</div>
+<figure class="figure ms-5 me-5 my-5">
+  <img src="/media/{{post.img}}" class="figure-img img-fluid rounded my-1" alt="...">
+  <figcaption class="p fw-bold text-decoration-underline">{{ post.introce }}</figcaption>
+  <p class="me-5 ms-5 fw-semibold ">" {{post.content}} "</p>
+  <p class="me-5 ms-5 fw-semibold ">" {{post.contentend}} "</p>
+</figure>
+<hr>
+
+<h2><small>Comment</small></h2>
+{% for comment in post.comment.all %}
+
+<article class="media">
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong> {{ comment.name }}</strong>  <small>{{ comment.date_posted }}</small>
+                <br>
+                {{ comment.content }}
+            </p>
+        </div>
+    </div>
+</article>
+{% empty %}
+<div class="notification">
+    <p>No Comment Yet!</p>
+</div>
+
+{% endfor %}
+
+
+<h3><b>Add Comment</b></h3>
+
+<form action="." method="post">
+    {% csrf_token %}
+
+    <div class="form-control">{{ form.as_p }}</div>
+
+    <div class="field">
+        <div class="control">
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+   
+      
+    
+</form>
+
+
+
+
+
+{% endblock %}
+

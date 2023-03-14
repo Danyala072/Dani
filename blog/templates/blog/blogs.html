@@ -1,0 +1,44 @@
+{% extends 'blog\base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container text-center">
+    <!--Section: Content-->
+
+      <h1 class="mb-5" style="margin-top:5rem;"><strong><u> Latest posts </u></strong></h1>
+      {% load static %} 
+      
+        {% for post in posts %}
+        {% if forloop.first %}
+      <div class="row mx-auto">
+        {% endif %}  
+        <div class="col-lg-4 col-md-12 mb-4 col-12">
+
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="/media/{{post.img}}" class="img-fluid" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <span><small> {{ post.date_posted }} </small></span>
+                <p class="card-text">
+                 {{ post.introce }}
+                </p>
+                <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+          </div> <div class="row mx-auto"> {% endif %} {% if forloop.last %} </div>{% endif %}
+          </div>
+         
+
+      <!--Section: Content-->
+
+      {% endfor %}
+
+{% endblock %}
